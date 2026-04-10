@@ -1,0 +1,492 @@
+<!DOCTYPE html><html lang="zh-TW"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>lapo 樂天市場進駐 先期調查報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Instrument+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400&family=Noto+Serif+TC:wght@300;400;600&family=Noto+Sans+TC:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:#fdfdfc; --ink:#1a1a1a; --muted:#64748b; --border:#e2e8f0;
+  --border-dark:#1a1a1a; --accent:#2563eb; --accent-bg:#eff6ff;
+  --green-bg:#dcfce7; --red-bg:#fee2e2; --yellow-bg:#fefce8;
+  --tag-bg:rgba(0,0,0,0.06);
+  --serif:'Noto Serif TC','Crimson Pro',Georgia,'Times New Roman',serif;
+  --sans:'Noto Sans TC','Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono','Fira Code',monospace;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);font-size:16px;line-height:1.7;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;}
+.cover-page{position:relative;min-height:100vh;background:var(--bg);display:flex;flex-direction:column;justify-content:space-between;padding:0;overflow:hidden;}
+.cover-top-rule{height:3px;background:var(--ink);width:100%;}
+.cover-body{flex:1;display:flex;flex-direction:column;justify-content:center;max-width:900px;margin:0 auto;width:100%;padding:0 40px;padding-top:72px;padding-bottom:48px;}
+.cover-kicker{font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:48px;display:flex;align-items:center;gap:14px;}
+.cover-kicker::before{content:'';display:inline-block;width:28px;height:1px;background:var(--muted);flex-shrink:0;}
+.cover-title{font-family:var(--serif);font-weight:300;font-size:clamp(48px,8vw,80px);line-height:1.05;color:var(--ink);letter-spacing:-0.01em;margin-bottom:10px;}
+.cover-title em{font-style:italic;font-weight:300;color:var(--muted);}
+.cover-subtitle{font-family:var(--serif);font-weight:300;font-size:clamp(20px,3vw,26px);color:var(--muted);margin-bottom:56px;line-height:1.45;max-width:600px;}
+.cover-meta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--border-dark);}
+.cover-meta-item{padding:20px 0 0;border-right:1px solid var(--border);padding-right:24px;margin-right:24px;}
+.cover-meta-item:last-child{border-right:none;padding-right:0;margin-right:0;}
+.cover-meta-label{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
+.cover-meta-value{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink);line-height:1.3;}
+.cover-categories{display:flex;gap:8px;flex-wrap:wrap;margin-top:36px;}
+.cover-cat-tag{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:0.06em;padding:5px 12px;border:1px solid var(--border-dark);color:var(--ink);}
+.cover-bottom{border-top:1px solid var(--border);padding:20px 40px;max-width:900px;margin:0 auto;width:100%;display:flex;justify-content:space-between;align-items:center;}
+.cover-bottom-left{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.08em;}
+.cover-bottom-right{font-family:var(--serif);font-size:13px;color:var(--muted);font-style:italic;}
+.cover-deco{position:absolute;right:-20px;bottom:60px;font-family:var(--serif);font-weight:300;font-size:clamp(180px,22vw,320px);line-height:1;color:rgba(0,0,0,0.04);pointer-events:none;user-select:none;letter-spacing:-0.05em;}
+.toc-page{min-height:100vh;background:var(--bg);display:flex;flex-direction:column;border-top:1px solid var(--border);}
+.toc-inner{max-width:900px;margin:0 auto;width:100%;padding:72px 40px 80px;flex:1;}
+.toc-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:40px;display:flex;align-items:center;gap:14px;}
+.toc-eyebrow::before{content:'';display:inline-block;width:28px;height:1px;background:var(--muted);}
+.toc-headline{font-family:var(--serif);font-weight:300;font-size:40px;color:var(--ink);margin-bottom:56px;line-height:1.1;}
+.toc-list{list-style:none;padding:0;margin:0;border-top:1px solid var(--border-dark);}
+.toc-item{border-bottom:1px solid var(--border);}
+.toc-link{display:grid;grid-template-columns:44px 1fr auto;align-items:baseline;gap:20px;padding:20px 0;text-decoration:none;color:inherit;transition:opacity .15s;}
+.toc-link:hover{opacity:0.6;}
+.toc-link:hover .toc-arrow{opacity:1;transform:translateX(4px);}
+.toc-num{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.06em;padding-top:4px;}
+.toc-section-label{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+.toc-entry-title{font-family:var(--serif);font-weight:400;font-size:22px;color:var(--ink);line-height:1.2;margin-bottom:4px;}
+.toc-entry-sub{font-size:13px;color:var(--muted);line-height:1.4;}
+.toc-arrow{font-size:16px;color:var(--muted);opacity:0;transition:opacity .15s,transform .15s;align-self:center;}
+.nav{position:sticky;top:0;z-index:100;background:rgba(253,253,252,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 40px;}
+.nav-inner{max-width:900px;margin:0 auto;display:flex;gap:0;overflow-x:auto;}
+.nav-link{display:block;padding:14px 18px;font-size:13px;font-weight:600;color:var(--muted);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;letter-spacing:0.01em;}
+.nav-link:hover,.nav-link.active{color:var(--ink);border-bottom-color:var(--accent);}
+main{max-width:900px;margin:0 auto;padding:0 40px 120px;}
+.hero{padding:88px 0 72px;border-bottom:1px solid var(--border-dark);margin-bottom:80px;}
+.hero-eyebrow{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:52px;line-height:1.12;color:var(--ink);margin-bottom:12px;}
+.hero h1 em{font-style:italic;font-weight:300;}
+.hero-sub{font-family:var(--serif);font-size:20px;font-weight:300;color:var(--muted);line-height:1.5;max-width:640px;margin-bottom:36px;}
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;font-size:13px;color:var(--muted);}
+.hero-meta span{font-weight:600;color:var(--ink);}
+section{padding:64px 0;border-bottom:1px solid var(--border);}
+section:last-of-type{border-bottom:none;}
+.section-label{font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+h2{font-family:var(--serif);font-weight:400;font-size:36px;line-height:1.15;color:var(--ink);margin-bottom:28px;}
+h3{font-family:var(--serif);font-weight:600;font-size:22px;color:var(--ink);margin:44px 0 14px;}
+h4{font-family:var(--sans);font-weight:700;font-size:14px;color:var(--ink);margin:24px 0 8px;letter-spacing:0.01em;}
+p{color:var(--muted);font-size:15px;line-height:1.75;margin-bottom:14px;}
+p strong{color:var(--ink);font-weight:600;}
+ul,ol{padding-left:20px;margin-bottom:16px;}
+li{color:var(--muted);font-size:15px;line-height:1.7;margin-bottom:4px;}
+li strong{color:var(--ink);}
+sup a{color:var(--accent);text-decoration:none;font-size:0.75em;}
+.table-wrap{overflow-x:auto;margin:20px 0 28px;}
+table{width:100%;border-collapse:collapse;font-size:14px;}
+thead th{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:8px 14px 8px 0;border-bottom:1px solid var(--border-dark);}
+thead th:last-child{padding-right:0;}
+tbody td{padding:11px 14px 11px 0;border-bottom:1px solid var(--border);color:var(--ink);vertical-align:top;font-size:14px;line-height:1.55;}
+tbody td:last-child{padding-right:0;}
+tbody td em{color:var(--muted);font-style:normal;font-size:12px;}
+tbody tr:last-child td{border-bottom:none;}
+.tag{display:inline-block;background:var(--tag-bg);color:var(--muted);font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-right:6px;vertical-align:middle;}
+.tag-blue{background:var(--accent-bg);color:var(--accent);}
+.tag-green{background:var(--green-bg);color:#166534;}
+.tag-red{background:var(--red-bg);color:#991b1b;}
+.callout{border-left:2px solid var(--border-dark);padding:16px 20px;margin:24px 0;background:transparent;}
+.callout p{margin-bottom:0;}
+.callout-blue{border-left-color:var(--accent);}
+.callout-green{border-left-color:#16a34a;}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin:24px 0 32px;}
+.stat-cell{background:var(--bg);padding:24px 20px;}
+.stat-num{font-family:var(--serif);font-size:36px;font-weight:300;color:var(--ink);line-height:1.05;margin-bottom:6px;}
+.stat-label{font-size:12px;color:var(--muted);line-height:1.4;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin:20px 0;}
+.col-cell{background:var(--bg);padding:24px 20px;}
+.col-cell h4{margin-top:0;}
+.funnel{margin:28px 0;display:flex;flex-direction:column;gap:2px;}
+.funnel-band{display:grid;grid-template-columns:52px 1fr auto;gap:20px;align-items:center;padding:20px 24px;}
+.funnel-band.tam{background:var(--ink);}
+.funnel-band.sam{background:#334155;}
+.funnel-band.som{background:var(--accent);}
+.f-label{font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.55);}
+.f-title{font-family:var(--serif);font-size:17px;font-weight:400;color:#fff;margin-bottom:3px;}
+.f-desc{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.5;}
+.f-num{font-family:var(--serif);font-size:32px;font-weight:300;color:#fff;text-align:right;white-space:nowrap;}
+.funnel-pct{font-size:11px;color:var(--muted);text-align:center;padding:6px 0;letter-spacing:0.02em;}
+.assumption{border:1px solid var(--border);padding:20px 24px;margin:20px 0;font-size:14px;}
+.assumption h4{margin-top:0;color:var(--muted);font-weight:600;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;}
+.comp-block{border-top:1px solid var(--border);padding:24px 0;}
+.comp-block:first-of-type{border-top:1px solid var(--border-dark);}
+.comp-head{display:flex;align-items:baseline;gap:12px;margin-bottom:12px;}
+.comp-name{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink);}
+.strategy-list{margin:20px 0;counter-reset:strat;}
+.strategy-item{counter-increment:strat;border-top:1px solid var(--border);padding:20px 0 20px 52px;position:relative;}
+.strategy-item:last-child{border-bottom:1px solid var(--border);}
+.strategy-item::before{content:counter(strat,decimal-leading-zero);position:absolute;left:0;top:20px;font-family:var(--mono);font-size:13px;color:var(--muted);}
+.strategy-item h4{margin-top:0;}
+.highlight-box{background:var(--ink);color:#fff;padding:24px 28px;margin:24px 0;}
+.highlight-box p{color:rgba(255,255,255,0.75);margin-bottom:0;}
+.highlight-box strong{color:#fcd34d;}
+.phase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin:24px 0;}
+.phase-cell{background:var(--bg);padding:20px 16px;}
+.phase-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:6px;}
+.phase-num{font-family:var(--serif);font-size:26px;font-weight:300;color:var(--ink);margin-bottom:4px;}
+.phase-desc{font-size:12px;color:var(--muted);line-height:1.5;}
+.refs{padding-top:48px;}
+.refs h2{font-size:18px;font-family:var(--sans);font-weight:700;margin-bottom:20px;}
+.refs ol{padding-left:18px;}
+.refs li{font-size:12px;color:var(--muted);margin-bottom:4px;}
+.refs a{color:var(--accent);word-break:break-all;}
+@media(max-width:640px){main{padding:0 20px 80px;}.hero h1{font-size:34px;}.stat-grid{grid-template-columns:1fr 1fr;}.two-col{grid-template-columns:1fr;}.phase-grid{grid-template-columns:1fr;}.funnel-band{grid-template-columns:40px 1fr;}.f-num{grid-column:span 2;text-align:left;font-size:24px;}.nav{padding:0 16px;}}
+</style>
+</head><body>
+
+<div class="cover-page" id="cover">
+  <div class="cover-top-rule"></div>
+  <div class="cover-body">
+    <p class="cover-kicker">Preliminary Market Research — Confidential</p>
+    <h1 class="cover-title">lapo<br><em>樂天市場進駐</em><br>先期調查報告</h1>
+    <p class="cover-subtitle">針對可攜式電源（小型蓄電系統）及<br>電風扇系列的日本市場動態、競爭狀況、<br>潛在銷售通路之先期調查</p>
+    <div class="cover-meta-grid">
+      <div class="cover-meta-item"><div class="cover-meta-label">調查實施日</div><div class="cover-meta-value">2026年4月2日</div></div>
+      <div class="cover-meta-item"><div class="cover-meta-label">目標市場</div><div class="cover-meta-value">日本國內（以樂天市場為主）</div></div>
+      <div class="cover-meta-item"><div class="cover-meta-label">委託單位</div><div class="cover-meta-value">lapo（資詠科技）會長室</div></div>
+    </div>
+    <div class="cover-categories">
+      <span class="cover-cat-tag">可攜式電源</span>
+      <span class="cover-cat-tag">電風扇系列</span>
+      <span class="cover-cat-tag">TAM · SAM · SOM</span>
+      <span class="cover-cat-tag">競爭分析</span>
+      <span class="cover-cat-tag">銷售通路策略</span>
+    </div>
+  </div>
+  <div class="cover-deco">lapo</div>
+  <div class="cover-bottom">
+    <span class="cover-bottom-left">© 2026 — Internal Use Only</span>
+    <span class="cover-bottom-right">Japan Market Entry Research</span>
+  </div>
+</div>
+
+<div class="toc-page" id="toc">
+  <div class="toc-inner">
+    <p class="toc-eyebrow">Table of Contents</p>
+    <h2 class="toc-headline">目錄</h2>
+    <ul class="toc-list">
+      <li class="toc-item"><a class="toc-link" href="#lapo-overview"><span class="toc-num">01</span><div class="toc-body"><div class="toc-section-label">Company</div><div class="toc-entry-title">lapo 公司概要與日本市場現狀</div><div class="toc-entry-sub">企業概要 · 產品陣容 · 日本展開現狀</div></div><span class="toc-arrow">→</span></a></li>
+      <li class="toc-item"><a class="toc-link" href="#tamsam"><span class="toc-num">02</span><div class="toc-body"><div class="toc-section-label">Market Sizing</div><div class="toc-entry-title">TAM · SAM · SOM 市場規模框架</div><div class="toc-entry-sub">整體概觀 · 兩類別比較 · 第3年銷售目標</div></div><span class="toc-arrow">→</span></a></li>
+      <li class="toc-item"><a class="toc-link" href="#portable-market"><span class="toc-num">03</span><div class="toc-body"><div class="toc-section-label">Portable Power</div><div class="toc-entry-title">可攜式電源 日本市場動態・規模</div><div class="toc-entry-sub">市場成長驅動因素 · 技術趨勢 · TAM/SAM/SOM詳細 · 三強競爭分析</div></div><span class="toc-arrow">→</span></a></li>
+      <li class="toc-item"><a class="toc-link" href="#fan-market"><span class="toc-num">04</span><div class="toc-body"><div class="toc-section-label">Fan Series</div><div class="toc-entry-title">電風扇系列 日本市場動態・規模</div><div class="toc-entry-sub">區段別動態 · 消費者需求 · TAM/SAM/SOM詳細 · 8家競爭對手比較</div></div><span class="toc-arrow">→</span></a></li>
+      <li class="toc-item"><a class="toc-link" href="#channel"><span class="toc-num">05</span><div class="toc-body"><div class="toc-section-label">Go-to-Market</div><div class="toc-entry-title">樂天市場進駐策略與潛在銷售通路</div><div class="toc-entry-sub">開店費用體系 · RPP廣告 · 活動策略 · 通路比較矩陣</div></div><span class="toc-arrow">→</span></a></li>
+      <li class="toc-item"><a class="toc-link" href="#regulation"><span class="toc-num">06</span><div class="toc-body"><div class="toc-section-label">Compliance</div><div class="toc-entry-title">法規・認證要求</div><div class="toc-entry-sub">PSE標誌 · 產品安全4法修正（2025年12月施行）· 電波法・技適</div></div><span class="toc-arrow">→</span></a></li>
+      <li class="toc-item"><a class="toc-link" href="#recommendation"><span class="toc-num">07</span><div class="toc-body"><div class="toc-section-label">Recommendations</div><div class="toc-entry-title">對 lapo 的戰略建議</div><div class="toc-entry-sub">3年期銷售模擬 · 可攜式電源策略 · 電風扇策略 · 通路策略矩陣</div></div><span class="toc-arrow">→</span></a></li>
+    </ul>
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-link" href="#overview">概要</a>
+    <a class="nav-link" href="#tamsam">TAM/SAM/SOM</a>
+    <a class="nav-link active" href="#portable-market">可攜式電源</a>
+    <a class="nav-link" href="#fan-market">電風扇</a>
+    <a class="nav-link" href="#channel">銷售通路</a>
+    <a class="nav-link" href="#regulation">法規</a>
+    <a class="nav-link" href="#recommendation">建議事項</a>
+  </div>
+</nav>
+
+<main>
+<div class="hero" id="overview">
+  <p class="hero-eyebrow">Preliminary Market Research — Japan</p>
+  <h1>lapo 樂天市場進駐<br><em>先期調查報告</em></h1>
+  <p class="hero-sub">針對可攜式電源（小型蓄電系統）及電風扇系列的日本市場動態、競爭狀況、潛在銷售通路之調查。</p>
+  <div class="hero-meta">調查日：<span>2026年4月2日</span>&nbsp;&nbsp;目標市場：<span>日本（以樂天市場為主）</span>&nbsp;&nbsp;類別：<span>可攜式電源 / 電風扇</span></div>
+</div>
+
+<section id="lapo-overview">
+  <p class="section-label">Section 01 — Company</p>
+  <h2>lapo 公司概要與<br>日本市場現狀</h2>
+  <p>lapo（ラポ）是台灣的<strong>資詠科技股份有限公司（Ziyong Technology）</strong>於2000年6月創立的自有品牌<a href="#ref1"><sup>[1]</sup></a>。總部位於新北市泰山區，與具備製造能力的「駿雅科技」及東莞的「喬新電子」作為關係企業連結，構建垂直整合型的事業體制。品牌標語為 "For Personal Style"。</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>項目</th><th>內容</th></tr></thead>
+    <tbody>
+      <tr><td>設立年份</td><td>2000年6月</td></tr>
+      <tr><td>營運公司</td><td>資詠科技股份有限公司（Ziyong Technology）</td></tr>
+      <tr><td>總部</td><td>台灣・新北市泰山區</td></tr>
+      <tr><td>製造夥伴</td><td>駿雅科技（台灣）、喬新電子（東莞）</td></tr>
+      <tr><td>主力產品</td><td>行動電源（WT-03/08/06/12）、手持風扇（LF系列）、可攜式電源（LPB-500G）</td></tr>
+      <tr><td>日本官網</td><td>lapoglobal.com（日語對應）</td></tr>
+      <tr><td>設計榮譽</td><td>台灣金點設計獎得獎實績</td></tr>
+      <tr><td>已取得安全認證</td><td>BSMI、NCC、CE、FCC、PSE（部分機型）<a href="#ref2"><sup>[2]</sup></a></td></tr>
+    </tbody>
+  </table></div>
+  <h3>日本市場現狀</h3>
+  <p>在 Amazon.co.jp 上，行動電源（WT-03/08）維持 4.4 顆星左右的高評價，並透過 Instagram「LaPO_Japan」實施網紅行銷<a href="#ref3"><sup>[3]</sup></a>。另一方面，<strong>截至目前（2026年4月）在樂天市場尚未確認有官方店鋪進駐</strong>。電風扇（LF系列）主要在台灣的 Shopee 上銷售，正式進軍日本市場仍屬起步階段<a href="#ref4"><sup>[4]</sup></a>。</p>
+  <div class="callout callout-blue"><p><strong>關鍵洞察。</strong> lapo 正以行動電源為起點，在日本市場逐步建立品牌知名度。可攜式電源・電風扇兩類別於樂天市場的進駐尚未實現，搶先布局的空間相當充裕。</p></div>
+  <h3>主力產品陣容（日本市場展開候選）</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>類別</th><th>型號</th><th>主要規格・差異化重點</th></tr></thead>
+    <tbody>
+      <tr><td>行動電源</td><td>WT-03 / WT-08 / WT-12</td><td>10,000mAh、22.5W快速充電、無線充電、內建線材、已取得PSE</td></tr>
+      <tr><td>可攜式電源</td><td>LPB-500G</td><td>500W輸出、快速充電對應、台灣定價NT$19,800（約9萬日圓）</td></tr>
+      <tr><td>手持風扇</td><td>LF-02（迷你渦流型）、製冷風扇系列</td><td>158g超輕量、內建5100mAh、採用松下電芯、百段風速調節</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="tamsam">
+  <p class="section-label">Section 02 — Market Sizing</p>
+  <h2>TAM · SAM · SOM<br>市場規模框架</h2>
+  <p>透過 TAM（Total Addressable Market：整體市場）、SAM（Serviceable Addressable Market：自身可觸及市場）、SOM（Serviceable Obtainable Market：現實可獲取市場）三層結構，定量整理 lapo 應鎖定的規模。</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>層次</th><th>定義</th><th>可攜式電源</th><th>電風扇</th><th>合計</th></tr></thead>
+    <tbody>
+      <tr><td><strong>TAM</strong><br><em>2025年日本整體市場推估</em></td><td>該類別的國內全市場規模</td><td><strong>約400億日圓</strong></td><td><strong>約500億日圓</strong></td><td><strong>約900億日圓</strong></td></tr>
+      <tr><td><strong>SAM</strong><br><em>lapo 可觸及市場</em></td><td>從產品・價格帶・認證・通路角度可觸達的市場</td><td><strong>約150億日圓</strong></td><td><strong>約50億日圓</strong></td><td><strong>約200億日圓</strong></td></tr>
+      <tr><td><strong>SOM</strong><br><em>第3年年度銷售目標</em></td><td>進駐後3年內可現實獲取的銷售額（SAM的1～2%預估）</td><td><strong>1.5～3億日圓</strong></td><td><strong>0.5～1.5億日圓</strong></td><td><strong>2～4.5億日圓</strong></td></tr>
+    </tbody>
+  </table></div>
+  <div class="assumption"><h4>前提・注意事項</h4><p style="margin-bottom:0">上述數值均為民間調查機構推估值及本次調查數據計算而得之推估，非確定值。匯率換算採1美元＝150日圓。SOM 表示第3年的年度銷售水準，非3年累計。</p></div>
+</section>
+
+<section id="portable-market">
+  <p class="section-label">Section 03 — Portable Power</p>
+  <h2>可攜式電源<br>日本市場動態・規模</h2>
+  <div class="stat-grid">
+    <div class="stat-cell"><div class="stat-num">CAGR 8～11%</div><div class="stat-label">日本市場年增率（推估）</div></div>
+    <div class="stat-cell"><div class="stat-num">累計650萬台</div><div class="stat-label">截至2024年底國內出貨量（2019年以後累計）<a href="#ref7"><sup>[7]</sup></a></div></div>
+    <div class="stat-cell"><div class="stat-num">約400億日圓</div><div class="stat-label">2025年日本市場規模（推估中位值）</div></div>
+  </div>
+  <p>全球可攜式電源市場預估2025年規模約7億6,850萬美元（CAGR 11.22%），預計至2032年將達約16億1,783萬美元<a href="#ref5"><sup>[5]</sup></a>。關於日本國內固有推估，Spherical Insights 預測「2022年為1億5,834萬美元，至2032年以 CAGR 8.0% 成長，2032年達3億4,371萬美元」<a href="#ref6"><sup>[6]</sup></a>。</p>
+  <h3>市場成長驅動因素</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>驅動因素</th><th>詳細說明</th><th>重要度</th></tr></thead>
+    <tbody>
+      <tr><td><strong>防災・停電對策</strong></td><td>能登半島地震（2024年）後防災意識提升，將可攜式電源作為備用電源儲備的家庭急增。BCN調查（2023年10月）顯示持有率僅4.7%，潛在需求龐大</td><td><span class="tag tag-red">極高</span></td></tr>
+      <tr><td><strong>戶外・休閒活動</strong></td><td>露營・車泊市場擴大。Jackery 2019年進軍日本初期以戶外需求為主</td><td><span class="tag">高</span></td></tr>
+      <tr><td><strong>節電・自給自足</strong></td><td>因電費上漲，搭配太陽能板進行家庭節電的需求擴大</td><td><span class="tag">中～高</span></td></tr>
+      <tr><td><strong>安全規制強化</strong></td><td>2025年12月施行的產品安全4法修正，海外業者亦納入規制對象。可信度高的品牌優勢增加</td><td><span class="tag">中</span></td></tr>
+    </tbody>
+  </table></div>
+  <h3>產品・技術趨勢</h3>
+  <div class="two-col">
+    <div class="col-cell"><h4>電池技術</h4><ul><li>LFP（磷酸鐵鋰）已成為事實上的標準（充放電循環3,000次以上，起火風險極低）</li><li>「半固體鋰離子電池」因能量密度提升30%而備受關注（2026年最新趨勢）</li><li>鈉離子電池（Elecom等業者進入）作為新安全標準登場</li></ul></div>
+    <div class="col-cell"><h4>功能・設計趨勢</h4><ul><li>雙向快速充電（同時充放電對應）</li><li>可擴充電池連接，系統最大可擴充至5kWh</li><li>App 遠端操控・UPS 功能標準化</li><li>適合戶外拍攝的多彩色系展開</li></ul></div>
+  </div>
+  <h3>TAM · SAM · SOM 詳細（可攜式電源）</h3>
+  <div class="funnel">
+    <div class="funnel-band tam"><div class="f-label">TAM</div><div class="f-body"><div class="f-title">日本可攜式電源市場整體（2025年）</div><div class="f-desc">全容量帶・全通路・全廠商合計。CAGR 8～11%成長中。預計2032年將擴大至約750～900億日圓</div></div><div class="f-num">約400億日圓</div></div>
+    <div class="funnel-pct">EC化率 65% × lapo對應價格帶（中容量3～15萬日圓）60% × 已取得PSE區段 95%</div>
+    <div class="funnel-band sam"><div class="f-label">SAM</div><div class="f-body"><div class="f-title">lapo 可觸及市場（2025年）</div><div class="f-desc">EC管道（約70%）×中容量帶（300～700Wh・3～10萬日圓帶：約60%）×已取得PSE區段</div></div><div class="f-num">約150億日圓</div></div>
+    <div class="funnel-pct">市場進駐期 1～2% 獲取預估 ／ 第3年目標</div>
+    <div class="funnel-band som"><div class="f-label">SOM</div><div class="f-body"><div class="f-title">lapo 可獲取銷售額（第3年）</div><div class="f-desc">SAM的1～2%市占率獲取。換算年度銷售台數約3,000～8,000台（預估單價30,000～70,000日圓）</div></div><div class="f-num">1.5～3億日圓</div></div>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>篩選條件</th><th>適用比率</th><th>計算值</th></tr></thead>
+    <tbody>
+      <tr><td>TAM（日本可攜式電源市場 2025年）</td><td>100%</td><td>約400億日圓</td></tr>
+      <tr><td>EC銷售比率（樂天・Amazon・Yahoo!等）</td><td>× 65%</td><td>約260億日圓</td></tr>
+      <tr><td>lapo對應價格帶（3～15萬日圓帶，中容量300～700Wh）</td><td>× 60%</td><td>約156億日圓</td></tr>
+      <tr><td>已取得PSE・認證要件符合區段</td><td>× 95%（推估）</td><td><strong>約148億日圓 ≈ 約150億日圓</strong></td></tr>
+    </tbody>
+  </table></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>情境</th><th>SOM（第3年年度銷售）</th><th>前提條件</th></tr></thead>
+    <tbody>
+      <tr><td><strong>保守情境</strong></td><td>約1.5億日圓（SAM的約1%）</td><td>僅樂天市場進駐。透過RPP廣告自然成長。年度銷售台數約3,000～4,000台（平均單價40,000日圓）</td></tr>
+      <tr><td><strong>中間情境</strong></td><td>約2億日圓（SAM的約1.3%）</td><td>樂天+Amazon+Yahoo!三大平台展開。參加超級SALE・實施網紅PR</td></tr>
+      <tr><td><strong>積極情境</strong></td><td>約3億日圓（SAM的約2%）</td><td>開設樂天廠商展示廳・連動防災特賣・投入1,000Wh以上機型</td></tr>
+    </tbody>
+  </table></div>
+  <h3>競爭狀況：三強寡占市場</h3>
+  <div class="callout"><p>根據價格.com（2026年3月），<strong>Jackery・EcoFlow・Anker三家廠商佔據國內銷售額80%以上</strong>，形成高度寡占市場<a href="#ref9"><sup>[9]</sup></a>。後進業者需要明確的差異化。</p></div>
+  <div class="comp-block"><div class="comp-head"><span class="comp-name">Jackery（傑克里）</span><span class="tag tag-red">國內連續7年No.1</span></div><div class="table-wrap"><table><tbody><tr><td style="width:120px;color:var(--muted)">強項</td><td>壓倒性品牌知名度、與JVC建伍聯名機型、全通路展開、最長5年保固、獲得樂天年度最佳商店獎2020<a href="#ref10"><sup>[10]</sup></a></td></tr><tr><td style="color:var(--muted)">主力機型・價格</td><td>Jackery 1000 New（1002Wh）：約89,000～100,000日圓，Jackery 1500 New：約120,000日圓帶。家電大賞2025-2026 金獎<a href="#ref11"><sup>[11]</sup></a></td></tr><tr><td style="color:var(--muted)">弱項</td><td>高價格帶，導入門檻高</td></tr></tbody></table></div></div>
+  <div class="comp-block"><div class="comp-head"><span class="comp-name">EcoFlow（晶晨科技）</span><span class="tag">中國發跡</span></div><div class="table-wrap"><table><tbody><tr><td style="width:120px;color:var(--muted)">強項</td><td>「X-Boost」技術帶來的高創新性、擴充電池系統（最大5kWh）、樂天廠商展示廳展開<a href="#ref12"><sup>[12]</sup></a></td></tr><tr><td style="color:var(--muted)">主力機型・價格</td><td>DELTA 3 Plus（1024Wh）：80,000～120,000日圓帶</td></tr><tr><td style="color:var(--muted)">弱項</td><td>促銷價格變動劇烈，影響價格信賴性</td></tr></tbody></table></div></div>
+  <div class="comp-block"><div class="comp-head"><span class="comp-name">Anker（安克）</span><span class="tag">中國發跡・美國設立</span></div><div class="table-wrap"><table><tbody><tr><td style="width:120px;color:var(--muted)">強項</td><td>從行動電源交叉銷售（Cross-sell）、全國實體門市展開、「58分鐘充滿」等規格訴求強<a href="#ref13"><sup>[13]</sup></a></td></tr><tr><td style="color:var(--muted)">主力機型・價格</td><td>Solix C1000（1056Wh）：約59,989日圓～（Amazon暢銷商品）</td></tr><tr><td style="color:var(--muted)">弱項</td><td>非可攜式電源專業廠商，品牌形象略顯分散</td></tr></tbody></table></div></div>
+  <h3>價格帶別市場結構</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>價格帶</th><th>主要業者</th><th>特徵</th></tr></thead>
+    <tbody>
+      <tr><td>～3萬日圓（小容量）</td><td>Anker、Elecom、各廠入門款</td><td>以手機・平板充電為主。競爭激化・利潤率下降</td></tr>
+      <tr><td>3～7萬日圓（中容量）</td><td>Anker Solix C1000、Jackery 700系</td><td>最激烈戰區。700～1,000Wh級為主戰場</td></tr>
+      <tr><td>7～15萬日圓（大容量）</td><td>EcoFlow DELTA 3、Jackery 1000/1500、BLUETTI</td><td>以家電使用・防災為主。高單價，利潤率相對良好</td></tr>
+      <tr><td>15萬日圓～（頂級）</td><td>EcoFlow DELTA Pro、Goal Zero</td><td>定位接近家用蓄電系統</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="fan-market">
+  <p class="section-label">Section 04 — Fan Series</p>
+  <h2>電風扇系列<br>日本市場動態・規模</h2>
+  <div class="stat-grid">
+    <div class="stat-cell"><div class="stat-num">CAGR 5.8%</div><div class="stat-label">2026～2034年成長率預測（IMARC）<a href="#ref14"><sup>[14]</sup></a></div></div>
+    <div class="stat-cell"><div class="stat-num">約500億日圓</div><div class="stat-label">2025年日本電風扇市場規模（推估）</div></div>
+    <div class="stat-cell"><div class="stat-num">CAGR 7.5%+</div><div class="stat-label">手持風扇市場成長率（2025～2035年）<a href="#ref15"><sup>[15]</sup></a></div></div>
+  </div>
+  <p>根據IMARC集團最新調查（2026年2月），日本電動電風扇市場2025年將達3億3,520萬美元（約503億日圓），預計至2034年以CAGR 5.83%成長至5億5,820萬美元。驅動市場的因素包括省電家電需求增加、都市化發展，以及室內空氣循環意識的提升<a href="#ref14"><sup>[14]</sup></a>。</p>
+  <h3>市場區段別動態</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>區段</th><th>市場動態</th><th>主要消費者需求</th></tr></thead>
+    <tbody>
+      <tr><td><strong>客廳風扇（落地型）</strong></td><td>成熟市場。DC馬達搭載逐漸成為主流</td><td>靜音、省電、自然風（1/f擺動等）</td></tr>
+      <tr><td><strong>循環扇</strong></td><td>Iris Ohyama佔壓倒性市占。全年需求化趨勢的成長區段</td><td>空氣循環・冬季暖房輔助・CP值</td></tr>
+      <tr><td><strong>塔扇（含無葉片）</strong></td><td>CAGR 7.15%，成長速度高。Balmuda・Dyson領導頂級帶<a href="#ref16"><sup>[16]</sup></a></td><td>省空間、設計感、安全性</td></tr>
+      <tr><td><strong>手持風扇・USB電風扇</strong></td><td>最快速成長區段。充電式・附製冷功能崛起。從季節性商品走向全年化</td><td>輕量・小巧、充電式、CP值</td></tr>
+      <tr><td><strong>智慧風扇（IoT連結）</strong></td><td>Xiaomi（Smartmi）等崛起。語音操控・App對應成為差異化重點</td><td>智慧家居連結、自動溫度感應</td></tr>
+    </tbody>
+  </table></div>
+  <h3>消費者購買決策因素</h3>
+  <p>根據1,000人規模問卷調查（2025年8月・PR Times），購買電風扇時最重視的要素依序為<strong>價格（725票）</strong>、<strong>風量（404票）、靜音性（385票）</strong><a href="#ref17"><sup>[17]</sup></a>。CP值導向為多數層的共同特點，同時Balmuda・Dyson等頂級品牌亦維持一定需求，呈現兩極化結構。</p>
+  <h3>TAM · SAM · SOM 詳細（電風扇）</h3>
+  <div class="funnel">
+    <div class="funnel-band tam"><div class="f-label">TAM</div><div class="f-body"><div class="f-title">日本電風扇市場整體（2025年）</div><div class="f-desc">全品類・全通路・全廠商。CAGR 5.8%，2034年達約839億日圓。手持型CAGR超過7.5%</div></div><div class="f-num">約500億日圓</div></div>
+    <div class="funnel-pct">手持・充電式風扇區段比率 17% × EC銷售比率 60% × lapo價格帶適合 95%</div>
+    <div class="funnel-band sam"><div class="f-label">SAM</div><div class="f-body"><div class="f-title">lapo 可觸及市場（2025年）</div><div class="f-desc">手持風扇・USB充電式風扇・製冷風扇的EC銷售市場。lapo LF系列直接競爭的區段</div></div><div class="f-num">約50億日圓</div></div>
+    <div class="funnel-pct">SAM內市占 1～3% 獲取預估 ／ 第3年目標</div>
+    <div class="funnel-band som"><div class="f-label">SOM</div><div class="f-body"><div class="f-title">lapo 可獲取銷售額（第3年）</div><div class="f-desc">SAM的1～3%市占率獲取。換算年度銷售台數約5,000～20,000台（預估單價5,000～10,000日圓）</div></div><div class="f-num">0.5～1.5億日圓</div></div>
+  </div>
+  <div class="assumption"><h4>為何電風扇的 SOM 小於可攜式電源？</h4><ul><li><strong>單價差異：</strong> 手持風扇平均單價5,000～10,000日圓 vs 可攜式電源30,000～70,000日圓。同樣台數的銷售額相差約4～7倍</li><li><strong>競爭密度：</strong> 手持風扇市場中國・韓國・國內CP值廠商聚集，價格競爭激烈</li><li><strong>戰略意義：</strong> 購買門檻低，最適合在樂天市場建立評論・評分基礎。「電風扇建立信賴 → 可攜式電源交叉銷售（Cross-sell）」的導流設計具有效益</li></ul></div>
+  <h3>競爭狀況</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>品牌</th><th>價格帶</th><th>強項</th><th>弱項</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Iris Ohyama</strong></td><td>3,000～15,000日圓</td><td>循環扇No.1。CP值・功能密度。語音操控對應</td><td>頂級形象不足</td></tr>
+      <tr><td><strong>山善（YAMAZEN）</strong></td><td>3,000～8,000日圓</td><td>DC馬達搭載也能以5,980日圓～的低價提供</td><td>設計・品牌力弱</td></tr>
+      <tr><td><strong>Panasonic（松下）</strong></td><td>15,000～40,000日圓</td><td>「1/f擺動」「nanoe」等獨有技術。立體旋轉・溫度感應器搭載<a href="#ref19"><sup>[19]</sup></a></td><td>高價格。難觸及CP值重視層</td></tr>
+      <tr><td><strong>SHARP（夏普）</strong></td><td>15,000～35,000日圓</td><td>搭載電漿叢集。空氣清淨與送風融合</td><td>針對特定族群的差異化</td></tr>
+      <tr><td><strong>Balmuda（百慕達）</strong></td><td>30,000～45,000日圓</td><td>GreenFan系列。自然風・設計家電的象徵性存在。2025年12月期收入下降<a href="#ref20"><sup>[20]</sup></a></td><td>高價格・購買動機有限</td></tr>
+      <tr><td><strong>Dyson（戴森）</strong></td><td>30,000～60,000日圓</td><td>無葉片設計、360度無指向性、空氣清淨・加濕功能</td><td>超高價格。維護費用高</td></tr>
+      <tr><td><strong>Xiaomi/Smartmi</strong></td><td>10,000～25,000日圓</td><td>DC馬達・100段風量・內建電池（20小時）。CP值×高功能<a href="#ref21"><sup>[21]</sup></a></td><td>日語客服支援弱</td></tr>
+      <tr><td><strong>duux（德可斯）</strong></td><td>20,000～40,000日圓</td><td>荷蘭發跡。Whisper系列在蔦屋家電展開。DC馬達・靜音・設計三位一體訴求<a href="#ref22"><sup>[22]</sup></a></td><td>歐洲品牌的售後服務疑慮</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout callout-blue"><p><strong>lapo 的機會。</strong> 截至目前（2026年4月），尚未確認有台灣發跡的電風扇品牌在日本市場佔有確立的市占率。「台灣設計 × 無線 × 製冷功能」這一獨特定位尚屬空缺，lapo 的 LF 系列正適合占據此定位。</p></div>
+</section>
+
+<section id="channel">
+  <p class="section-label">Section 05 — Go-to-Market</p>
+  <h2>樂天市場進駐策略與<br>潛在銷售通路</h2>
+  <h3>樂天市場開店費用體系</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>方案</th><th>月費</th><th>系統使用費</th><th>建議用途</th></tr></thead>
+    <tbody>
+      <tr><td>加油！方案</td><td>19,500日圓/月（年繳）</td><td>3.5～6.5%（PC）/ 4.0～7.0%（行動裝置）</td><td>小規模起步・初期進駐</td></tr>
+      <tr><td>標準方案</td><td>50,000日圓/月（半年2次繳）</td><td>2.0～4.0% / 2.5～4.5%</td><td>一般進駐規模</td></tr>
+      <tr><td>大型商店方案</td><td>100,000日圓/月（半年2次繳）</td><td>2.0～4.0% / 2.5～4.5%</td><td>大型商店・需要無限容量時</td></tr>
+    </tbody>
+  </table></div>
+  <p>樂天會員ID超過1億1,000萬。2025年流通總額Q1～Q3全期均較前年成長，Q3更創下兩位數成長<a href="#ref26"><sup>[26]</sup></a>。生活家電・AV・PC類別的EC化率為43.03%（經濟產業省2024年度調查）<a href="#ref27"><sup>[27]</sup></a>。</p>
+  <h3>集客・SEO・廣告策略</h3>
+  <div class="strategy-list">
+    <div class="strategy-item"><h4>RPP廣告（搜索連動型廣告）的活用</h4><p>樂天市場SEO對策中最有效的是RPP廣告（Rakuten Promotion Platform）。以點擊計費方式，連動搜尋關鍵字實現上位顯示。在進駐初期的知名度擴大階段特別有效<a href="#ref28"><sup>[28]</sup></a>。</p></div>
+    <div class="strategy-item"><h4>樂天超級SALE・活動連動施策</h4><p>EcoFlow・Roborock等中國系品牌推出最高53% OFF優惠券，爆發性拉升銷售額的案例多有所見<a href="#ref29"><sup>[29]</sup></a>。把握防災意識高漲的3.11前後（3月）、夏季（6～8月）、歲末特賣等時機參與活動至關重要。</p></div>
+    <div class="strategy-item"><h4>商品頁優化（樂天SEO）</h4><p>標題・商品說明・圖片ALT中統一關鍵字、促進評論獲取、運費設定（3,980日圓以上適用免運費門檻）直接影響搜尋排名。</p></div>
+    <div class="strategy-item"><h4>SNS・網紅行銷</h4><p>lapo 已運營 Instagram「LaPO_Japan」帳號<a href="#ref30"><sup>[30]</sup></a>。與防災系・戶外系・生活風格系網紅（訂閱者5萬～50萬人規模）合作效果顯著。電風扇・可攜式電源與「展示實物的影片內容」相容性極高。</p></div>
+  </div>
+  <h3>通路比較矩陣</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>通路</th><th>強項</th><th>弱項</th><th>推薦度</th></tr></thead>
+    <tbody>
+      <tr><td><strong>樂天市場</strong></td><td>超過1億會員基礎、點數生態圈、自由頁面設計・品牌建立</td><td>開店成本高、競爭眾多</td><td><span class="tag tag-blue">高（主力）</span></td></tr>
+      <tr><td><strong>Amazon.co.jp</strong></td><td>lapo已進駐且有實績。可透過FBA對應當日配送</td><td>價格競爭激烈，商品頁面自由度低</td><td><span class="tag tag-blue">高（既有維持）</span></td></tr>
+      <tr><td><strong>Yahoo!購物</strong></td><td>開店費・手續費零成本，與PayPay點數連動</td><td>流通規模小於樂天・Amazon</td><td><span class="tag">中（補充）</span></td></tr>
+      <tr><td><strong>自有EC（lapoglobal.com）</strong></td><td>已展開日語網站。積累客戶資料・建立品牌世界觀</td><td>需要自主行銷投資吸引流量</td><td><span class="tag">中（品牌建立）</span></td></tr>
+      <tr><td><strong>實體門市（家電量販）</strong></td><td>在Yodobashi・BicCamera等的實體信賴感。試用・體驗直接帶動購買</td><td>棚位談判・初期費用・庫存風險大</td><td><span class="tag">低～中（未來）</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="regulation">
+  <p class="section-label">Section 06 — Compliance</p>
+  <h2>法規・認證要求</h2>
+  <div class="callout callout-green"><p><strong>最重要。</strong> 在日本銷售電氣製品，依電氣用品安全法（電安法）<strong>必須取得PSE標誌</strong>。2025年12月25日施行的「產品安全4法修正」，<strong>海外業者直接向日本國內消費者銷售的情況也納入規制對象</strong><a href="#ref31"><sup>[31]</sup></a>。</p></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>法規・認證</th><th>對象</th><th>對lapo的影響</th></tr></thead>
+    <tbody>
+      <tr><td><strong>PSE標誌（圓形）</strong></td><td>行動電源（2019年2月以後）、可攜式電源（鋰離子蓄電池）</td><td>lapo的WT-03/08等已取得PSE。LPB-500G（可攜式電源）需確認</td></tr>
+      <tr><td><strong>PSE標誌（方形）</strong></td><td>電風扇（作為電氣機器）</td><td>lapo的LF系列如要向日本展開，需取得方形PSE</td></tr>
+      <tr><td><strong>產品安全4法（2025年12月修正）</strong></td><td>海外業者直接向日本消費者銷售的情況</td><td>實質上可能需要設置日本法人或國內管理人</td></tr>
+      <tr><td><strong>家庭用品品質表示法</strong></td><td>家庭用電氣機器全般</td><td>日語品質標示（材質・額定・注意事項等）為義務。包裝日語化必須</td></tr>
+      <tr><td><strong>電波法（技適標誌）</strong></td><td>搭載Wi-Fi・藍牙的產品</td><td>具IoT功能的電風扇・App連動可攜式電源需取得技適</td></tr>
+    </tbody>
+  </table></div>
+  <p>lapo 行動電源主力產品（WT-03/08）已取得BSMI・NCC・CE・FCC・PSE安全認證，從產品適應日本市場的角度來看具備優異基礎<a href="#ref32"><sup>[32]</sup></a>。電風扇（LF系列）方面，在進駐樂天市場前，<strong>確認各產品類別的PSE取得狀況為必要條件</strong>。</p>
+</section>
+
+<section id="recommendation">
+  <p class="section-label">Section 07 — Recommendations</p>
+  <h2>對 lapo 的<br>戰略建議</h2>
+  <h3>3年期銷售模擬（兩類別整合）</h3>
+  <div class="phase-grid">
+    <div class="phase-cell"><div class="phase-label">Phase 1 ― 進駐～12個月</div><div class="phase-num">0.3～0.8億日圓</div><div class="phase-desc">行動電源（WT-08）+手持風扇（LF-02）。建立評論基礎・樂天SEO優化</div></div>
+    <div class="phase-cell"><div class="phase-label">Phase 2 ― 12～24個月</div><div class="phase-num">1～2億日圓</div><div class="phase-desc">追加可攜式電源（LPB-500G）・強化製冷手持風扇。三平台展開・參加超級SALE</div></div>
+    <div class="phase-cell"><div class="phase-label">Phase 3 ― 24～36個月</div><div class="phase-num">2～4.5億日圓</div><div class="phase-desc">投入1,000Wh以上新機型・電風扇全系列展開。開設樂天廠商展示廳</div></div>
+  </div>
+  <h3>可攜式電源 進駐策略</h3>
+  <div class="highlight-box"><p><strong>市場機會。</strong> 日本可攜式電源市場以CAGR 8～11%擴大中，防災・戶外需求引領成長。另一方面，Jackery・EcoFlow・Anker三強獨占80%以上，後進業者需要明確的定位設計。lapo 的強項在於設計感・已取得PSE・採用松下電芯的品質訴求。</p></div>
+  <div class="strategy-list">
+    <div class="strategy-item"><h4>進駐角度：「設計×輕巧×高安全性」中容量帶的差異化</h4><p>在Jackery・EcoFlow主打擴充性・大容量的同時，lapo應將「易於攜帶的設計」、「金點設計獎的品牌力」、「台灣品質」設定為差異化軸心。特別是<strong>作為防災用品的「女性・家庭向可攜式電源」</strong>定位，是競爭對手薄弱的空缺區段。</p></div>
+    <div class="strategy-item"><h4>價格策略：3～7萬日圓帶的CP值訴求</h4><p>LPB-500G 如設定70,000～80,000日圓前後的日本售價，可定位於EcoFlow DELTA 3系列（80,000～120,000日圓）之下，觸及重視CP值的族群。超級SALE期間推出30～40% OFF優惠券，以「實質5萬日圓帶」進行訴求同樣有效。</p></div>
+    <div class="strategy-item"><h4>樂天市場進駐階段設計</h4><p>【Phase 1】以「加油！方案」小規模起步。先以行動電源（WT-08等，既有PSE取得品）在樂天市場建立評論・評分基礎。【Phase 2】將LPB-500G投入樂天市場。配合3.11前後防災需求期・樂天超級SALE集中投放RPP廣告。【Phase 3】研討開發・投入1,000Wh以上的新機型。</p></div>
+  </div>
+  <h3>電風扇系列 進駐策略</h3>
+  <div class="highlight-box"><p><strong>市場機會。</strong> 日本電風扇市場以CAGR 5.8%穩健擴大。手持風扇・充電式風扇區段CAGR超過7.5%，成長最為顯著。lapo 的LF系列（內建5100mAh、158g超輕量、半導體製冷功能、採用松下電芯）具備適合進入高成長區段的產品陣容。</p></div>
+  <div class="strategy-list">
+    <div class="strategy-item"><h4>進駐產品聚焦：以手持風扇為起點</h4><p>落地型客廳電風扇市場中，Panasonic・SHARP・Iris Ohyama 擁有堅固市占。lapo 短期內最易確立優勢的是<strong>手持風扇・頸掛式風扇・USB充電式緊湊型風扇</strong>區段。製冷功能（搭載珀耳帖元件（Peltier）機型）是少數能創造規格唯一性的要素，應優先投入。</p></div>
+    <div class="strategy-item"><h4>價格設定：5,000～10,000日圓帶的CP值×功能差異化</h4><p>將價格設定在低於Xiaomi Smartmi（約2萬日圓）的5,000～10,000日圓帶，可對應CP值重視層的主力購買價格帶。以「採用松下電芯×製冷功能×158g」三位一體的規格差異化，迴避單純的價格競爭。</p></div>
+    <div class="strategy-item"><h4>夏季需求搶先策略</h4><p>電風扇需求隨氣溫上升，於4月下旬～8月急速增加<a href="#ref18"><sup>[18]</sup></a>。最遲<strong>4月中旬前開始在樂天市場公開商品並投入廣告</strong>，是最大化銷售額的關鍵。初批次投入時亦應研討申請樂天超級DEAL。</p></div>
+    <div class="strategy-item"><h4>PSE取得的早期確認與日語包裝整備</h4><p>LF系列在樂天市場上架需要依電氣用品安全法取得方形PSE標誌。應盡早向認證取得機構（JET、JQA等）諮詢，確認能否以既有BSMI認證為基礎申請PSE。</p></div>
+  </div>
+  <h3>整體通路策略矩陣</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>產品</th><th>進駐優先度</th><th>主力通路</th><th>主要施策</th></tr></thead>
+    <tbody>
+      <tr><td>行動電源（WT-08等）</td><td><span class="tag tag-green">即時（已取得PSE）</span></td><td>樂天市場 + Amazon</td><td>建立評論基礎・樂天SEO優化</td></tr>
+      <tr><td>手持風扇（LF-02等）</td><td><span class="tag tag-blue">高（夏季前・以取得PSE為條件）</span></td><td>樂天市場 + Amazon</td><td>製冷功能訴求・網紅PR</td></tr>
+      <tr><td>可攜式電源（LPB-500G）</td><td><span class="tag">中（確認PSE後・Phase 2）</span></td><td>樂天市場（以官方展示廳為目標）</td><td>防災季節連動廣告・參加樂天超級SALE</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="refs" id="refs">
+  <h2>參考文獻</h2>
+  <ol>
+    <li id="ref1">LaPO 公式サイト「会社概要」 — <a href="https://www.lapo.com.tw/zh-TW/pages/about-us" target="_blank">https://www.lapo.com.tw/zh-TW/pages/about-us</a></li>
+    <li id="ref2">LaPO Amazon.co.jp 商品ページ（WT-08）— <a href="https://www.amazon.co.jp/dp/B0DPWDGJ8Q" target="_blank">https://www.amazon.co.jp/dp/B0DPWDGJ8Q</a></li>
+    <li id="ref3">LaPO_Japan 公式Instagram — <a href="https://www.instagram.com/p/DRmd2_RD3Qo/" target="_blank">https://www.instagram.com/p/DRmd2_RD3Qo/</a></li>
+    <li id="ref4">LaPO Shopee台湾公式ストア — <a href="https://shopee.tw/lapo.tw" target="_blank">https://shopee.tw/lapo.tw</a></li>
+    <li id="ref5">360iResearch「ポータブル電源市場 2026-2032年」— <a href="https://www.gii.co.jp/report/ires1997113-portable-power-station-market-by-battery-type.html" target="_blank">https://www.gii.co.jp/report/ires1997113...</a></li>
+    <li id="ref6">Spherical Insights「日本ポータブル電源市場規模 2032年」— <a href="https://www.sphericalinsights.com/jp/reports/japan-portable-power-station-market" target="_blank">https://www.sphericalinsights.com/jp/...</a></li>
+    <li id="ref7">Jackery Japan プレスリリース（2026年3月・Frost &amp; Sullivan調査）— <a href="https://prtimes.jp/main/html/rd/p/000000324.000039188.html" target="_blank">https://prtimes.jp/...</a></li>
+    <li id="ref8">BCN+R「防災ニーズが増加中」— <a href="https://www.bcnretail.com/market/detail/20240322_411012.html" target="_blank">https://www.bcnretail.com/...</a></li>
+    <li id="ref9">価格.com「ポータブル電源 人気売れ筋ランキング 2026年3月」— <a href="https://kakaku.com/kaden/portable-battery/ranking_3113/" target="_blank">https://kakaku.com/...</a></li>
+    <li id="ref10">Jackery Japan 公式サイト「About Us」— <a href="https://www.jackery.jp/pages/about-us" target="_blank">https://www.jackery.jp/pages/about-us</a></li>
+    <li id="ref11">Jackery「家電大賞2025-2026 金賞」— <a href="https://prtimes.jp/main/html/rd/p/000000326.000039188.html" target="_blank">https://prtimes.jp/...</a></li>
+    <li id="ref12">楽天市場 EcoFlow メーカーショールーム — <a href="https://maker-showroom.rakuten.co.jp/ecoflow/" target="_blank">https://maker-showroom.rakuten.co.jp/ecoflow/</a></li>
+    <li id="ref13">Anker「2026年最新 おすすめポータブル電源9選」— <a href="https://www.ankerjapan.com/blogs/magazine/power-recommend" target="_blank">https://www.ankerjapan.com/...</a></li>
+    <li id="ref14">IMARC Group「日本の電気扇風機市場規模・予測 2034年」— <a href="https://www.imarcgroup.com/report/ja/japan-electric-fan-market" target="_blank">https://www.imarcgroup.com/...</a></li>
+    <li id="ref15">KD Market Insights「携帯型扇風機市場（2025〜2035年）」— <a href="https://www.dreamnews.jp/press/0000338418" target="_blank">https://www.dreamnews.jp/...</a></li>
+    <li id="ref16">マーケットリサーチセンター「台座ファンの日本市場」— <a href="https://www.atpress.ne.jp/news/4938507" target="_blank">https://www.atpress.ne.jp/...</a></li>
+    <li id="ref17">PR Times「扇風機について調査【1000人アンケート】」— <a href="https://prtimes.jp/main/html/rd/p/000001941.000080271.html" target="_blank">https://prtimes.jp/...</a></li>
+    <li id="ref18">価格.com「扇風機・サーキュレーター閲覧者数推移」— <a href="https://kakakumag.com/seikatsu-kaden/?id=19654" target="_blank">https://kakakumag.com/...</a></li>
+    <li id="ref19">パナソニック「リビング扇 F-C339D」— <a href="https://panasonic.jp/fan/products/F-C339D.html" target="_blank">https://panasonic.jp/...</a></li>
+    <li id="ref20">バルミューダ 事業計画（2025年12月期）— <a href="https://finance.biggo.jp/news/jpx_tdnet_140120260319585769" target="_blank">https://finance.biggo.jp/...</a></li>
+    <li id="ref21">Smartmi Amazon日本ページ — <a href="https://www.amazon.co.jp/dp/B088DRR4G7" target="_blank">https://www.amazon.co.jp/dp/B088DRR4G7</a></li>
+    <li id="ref22">duux 公式日本サイト — <a href="https://duux.jp/" target="_blank">https://duux.jp/</a></li>
+    <li id="ref23">楽天市場「扇風機・サーキュレーターランキング」— <a href="https://ranking.rakuten.co.jp/daily/565082/" target="_blank">https://ranking.rakuten.co.jp/...</a></li>
+    <li id="ref24">楽天市場出店プラン費用詳細 — <a href="https://www.rakuten.co.jp/ec/plan/cost_detail/" target="_blank">https://www.rakuten.co.jp/...</a></li>
+    <li id="ref25">楽天市場出店案内 — <a href="https://www.netsea.jp/media/rakuten_hanbai/" target="_blank">https://www.netsea.jp/...</a></li>
+    <li id="ref26">CommercePick「楽天市場2025年総括」— <a href="https://www.commercepick.com/archives/80669" target="_blank">https://www.commercepick.com/...</a></li>
+    <li id="ref27">経済産業省「令和6年度電子商取引に関する市場調査」— <a href="https://www.meti.go.jp/press/2025/08/20250826005/20250826005-a.pdf" target="_blank">https://www.meti.go.jp/...</a></li>
+    <li id="ref28">Nint「楽天RPP広告の運用ポイント」— <a href="https://www.nint.jp/blog/rakuten-rpp/" target="_blank">https://www.nint.jp/blog/rakuten-rpp/</a></li>
+    <li id="ref29">PR Times「楽天スーパーSALE Roborock 最大53%OFF」— <a href="https://prtimes.jp/main/html/rd/p/000000103.000085581.html" target="_blank">https://prtimes.jp/...</a></li>
+    <li id="ref30">LaPO_Japan Instagram — <a href="https://www.instagram.com/p/DRmd2_RD3Qo/" target="_blank">https://www.instagram.com/p/DRmd2_RD3Qo/</a></li>
+    <li id="ref31">経済産業省「製品安全4法改正」（2025年12月25日施行）— <a href="https://www.meti.go.jp/product_safety/tokuteiyunyu/tokuteiyunyu.html" target="_blank">https://www.meti.go.jp/...</a></li>
+    <li id="ref32">LaPO公式サイト「VIP保証サービス・認証情報」— <a href="https://www.lapo.com.tw/ja/pages/warranty" target="_blank">https://www.lapo.com.tw/ja/pages/warranty</a></li>
+  </ol>
+</section>
+</main>
+
+<script>
+const sections=document.querySelectorAll('section[id],div[id]');
+const navLinks=document.querySelectorAll('.nav-link');
+const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){navLinks.forEach(l=>l.classList.remove('active'));const active=document.querySelector(`.nav-link[href="#${entry.target.id}"]`);if(active)active.classList.add('active');}});},{rootMargin:'-30% 0px -60% 0px'});
+sections.forEach(s=>observer.observe(s));
+</script>
+</body></html>
